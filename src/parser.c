@@ -46,7 +46,7 @@ list *read_cfg(char *filename);
 
 LAYER_TYPE string_to_layer_type(char * type)
 {
-
+    if (strcmp(type, "[depthwise_convolutional]") == 0) return DEPTHWISE_CONVOLUTIONAL;
     if (strcmp(type, "[shortcut]")==0) return SHORTCUT;
     if (strcmp(type, "[crop]")==0) return CROP;
     if (strcmp(type, "[cost]")==0) return COST;
