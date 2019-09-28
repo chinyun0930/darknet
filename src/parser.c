@@ -46,7 +46,7 @@ list *read_cfg(char *filename);
 
 LAYER_TYPE string_to_layer_type(char * type)
 {
-
+    if (strcmp(type, "[depthwise_convolutional]") == 0) return DEPTHWISE_CONVOLUTIONAL;
     if (strcmp(type, "[shortcut]")==0) return SHORTCUT;
     if (strcmp(type, "[crop]")==0) return CROP;
     if (strcmp(type, "[cost]")==0) return COST;
@@ -739,7 +739,7 @@ int is_network(section *s)
             || strcmp(s->type, "[network]")==0);
 }
 
-network *parse_network_cfg(char *filename)
+network *(char *filename)
 {
     list *sections = read_cfg(filename);
     node *n = sections->front;
