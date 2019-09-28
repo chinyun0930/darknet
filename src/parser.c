@@ -1218,7 +1218,8 @@ void load_convolutional_weights(layer l, FILE *fp)
 
 
 void load_weights_upto(network *net, char *filename, int start, int cutoff)
-{
+{    
+    load depthwise weights;
 #ifdef GPU
     if(net->gpu_index >= 0){
         cuda_set_device(net->gpu_index);
