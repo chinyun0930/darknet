@@ -773,7 +773,9 @@ network *parse_network_cfg(char *filename)
         options = s->options;
         layer l = {0};
         LAYER_TYPE lt = string_to_layer_type(s->type);
-        if(lt == CONVOLUTIONAL){
+        if (lt == DEPTHWISE_CONVOLUTIONAL) {
+            l = parse_depthwise_convolutional(options, params);
+        }else if(lt == CONVOLUTIONAL){
             l = parse_convolutional(options, params);
         }else if(lt == DECONVOLUTIONAL){
             l = parse_deconvolutional(options, params);
