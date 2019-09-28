@@ -1312,3 +1312,7 @@ void load_weights(network *net, char *filename)
 {
     load_weights_upto(net, filename, 0, net->n);
 }
+
+void load_depthwise_convolutional_weights(layer l, FILE *fp);
+
+
