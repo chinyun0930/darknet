@@ -1317,6 +1317,12 @@ void load_depthwise_convolutional_weights(layer l, FILE *fp);
 
 void push_depthwise_convolutional_layer(depthwise_convolutional_layer layer);
 
-void save_weights_upto(network net, char *filename, int cutoff);
 void save_depthwise_convolutional_weights(layer l, FILE *fp);
 void pull_depthwise_convolutional_layer(depthwise_convolutional_layer layer);
+
+
+int resize_network(network *net, int w, int h)
+if (l.type==DEPTHWISE_CONVOLUTIONAL)
+{
+    resize_depthwise_convolutional_layer(&l, w, h);
+}
