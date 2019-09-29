@@ -46,7 +46,7 @@ list *read_cfg(char *filename);
 
 LAYER_TYPE string_to_layer_type(char * type)
 {
-    if (strcmp(type, "[depthwise_convolutional]") == 0) return DEPTHWISE_CONVOLUTIONAL;
+
     if (strcmp(type, "[shortcut]")==0) return SHORTCUT;
     if (strcmp(type, "[crop]")==0) return CROP;
     if (strcmp(type, "[cost]")==0) return COST;
@@ -773,9 +773,7 @@ network *parse_network_cfg(char *filename)
         options = s->options;
         layer l = {0};
         LAYER_TYPE lt = string_to_layer_type(s->type);
-        if (lt == DEPTHWISE_CONVOLUTIONAL) {
-            l = parse_depthwise_convolutional(options, params);
-        }else if(lt == CONVOLUTIONAL){
+        if(lt == CONVOLUTIONAL){
             l = parse_convolutional(options, params);
         }else if(lt == DECONVOLUTIONAL){
             l = parse_deconvolutional(options, params);
@@ -1218,8 +1216,7 @@ void load_convolutional_weights(layer l, FILE *fp)
 
 
 void load_weights_upto(network *net, char *filename, int start, int cutoff)
-{    
-    load depthwise weights;
+{
 #ifdef GPU
     if(net->gpu_index >= 0){
         cuda_set_device(net->gpu_index);
@@ -1311,18 +1308,4 @@ void load_weights_upto(network *net, char *filename, int start, int cutoff)
 void load_weights(network *net, char *filename)
 {
     load_weights_upto(net, filename, 0, net->n);
-}
-
-void load_depthwise_convolutional_weights(layer l, FILE *fp);
-
-void push_depthwise_convolutional_layer(depthwise_convolutional_layer layer);
-
-void save_depthwise_convolutional_weights(layer l, FILE *fp);
-void pull_depthwise_convolutional_layer(depthwise_convolutional_layer layer);
-
-
-int resize_network(network *net, int w, int h)
-if (l.type==DEPTHWISE_CONVOLUTIONAL)
-{
-    resize_depthwise_convolutional_layer(&l, w, h);
 }
