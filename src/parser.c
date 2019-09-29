@@ -741,6 +741,13 @@ int is_network(section *s)
 
 network *parse_network_cfg(char *filename)
 {
+    
+        LAYER_TYPE lt = string_to_layer_type(s->type);
+    if (lt == DEPTHWISE_CONVOLUTIONAL) {
+        l = parse_depthwise_convolutional(options, params);//自己编写的函数，主要调用了make layer
+    }
+    else if(lt == CONVOLUTIONAL)   
+        l = parse_convolutional(options, params);
     list *sections = read_cfg(filename);
     node *n = sections->front;
     if(!n) error("Config file has no sections");
@@ -1309,3 +1316,8 @@ void load_weights(network *net, char *filename)
 {
     load_weights_upto(net, filename, 0, net->n);
 }
+
+void load_weights_upto(network *net, char *filename, int start, int cutoff){
+    load depthwise weights；
+}
+void load_depthwise_convolutional_weights(layer l, FILE *fp)；
