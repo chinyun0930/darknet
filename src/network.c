@@ -1126,4 +1126,10 @@ void pull_network_output(network *net)
     cuda_pull_array(l.output_gpu, l.output, l.outputs*l.batch);
 }
 
+
+int resize_network(network *net, int w, int h)的resize：
+if (l.type==DEPTHWISE_CONVOLUTIONAL)
+{
+resize_depthwise_convolutional_layer(&l, w, h);
+}
 #endif
